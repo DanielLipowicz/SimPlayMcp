@@ -7,9 +7,6 @@ test.describe("Scenario 2: verify vehicles without login", () => {
   test.use({ storageState: config.StandardUserStorageState });
 
   test("Scenario 2: verify vehicles without login", async ({ page }) => {
-    console.log(
-      "!@####################Scenario 2: verify vehicles without login"
-    );
     const user = standardUser;
 
     const dashboardPage = new DashboardPage(page);
