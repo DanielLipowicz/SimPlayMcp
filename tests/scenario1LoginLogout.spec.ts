@@ -17,7 +17,7 @@ test('Scenario 1: login, verify vehicles, logout', async ({ page }) => {
     await dashboardPage.expectAllVehiclesVisible(user.ownedVehicleNames);
   });
   await test.step('Logout', async () => {
-  //  await dashboardPage.logout();
+   await dashboardPage.logout();
   });
   await test.step('Close page', async () => {
     await page.close();
