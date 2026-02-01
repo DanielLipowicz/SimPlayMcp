@@ -1,5 +1,6 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { expect, Locator, Page, test } from '@playwright/test';
 import { BasePage } from './BasePage';
+import { config } from '../config';
 
 class VehicleCard {
   readonly nameHeading: Locator;
@@ -33,12 +34,25 @@ export class DashboardPage extends BasePage {
     this.logoutMenuItem = page.getByRole('menuitem', { name: /Log out|Logout|Sign out/ });
   }
 
+  static async create(page: Page): Promise<DashboardPage> {
+    const dashboardPage = new DashboardPage(page);
+    await test.step('Open dashboard page', async () => {
+      await dashboardPage.goTo();
+    });
+    return dashboardPage;
+  }
+
   async expectVisible(): Promise<void> {
     await this.header.ensureEnglish();
     await expect(this.root).toBeVisible();
     await expect(this.welcomeHeading).toBeVisible();
     await expect(this.vehiclesSection).toBeVisible();
     await expect(this.vehiclesHeading).toBeVisible();
+  }
+
+  async goTo(): Promise<void> {
+    await this.page.goto(`${config.baseUrl}/dashboard`);
+    await this.expectVisible();
   }
 
   getVehicleCard(index: number): VehicleCard {
@@ -72,5 +86,14 @@ export class DashboardPage extends BasePage {
     await this.userMenuButton.click();
     await this.logoutMenuItem.click();
     await expect(this.header.signInLink).toBeVisible();
+  }
+
+  async closeDialogIfVisible(): Promise<void> {
+    const closeDialog = this.page.getByRole('button', { name: 'Close' });
+    if (await closeDialog.isVisible().catch(() => false)) {
+      await test.step('Closing dialog', async () => {
+        await closeDialog.click();
+      });
+    }
   }
 }

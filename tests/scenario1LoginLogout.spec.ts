@@ -9,19 +9,15 @@ test('Scenario 1: login, verify vehicles, logout', async ({ page }) => {
   const loginPage = await homePage.SingInButtonClick();
   const dashboardPage = await loginPage.login(user.email, user.password);
 
-  const closeDialog = page.getByRole('button', { name: 'Close' });
-  if (await closeDialog.isVisible().catch(() => false)) {
-    await test.step('Closing dialog', async () => {
-      await closeDialog.click();
-    });
-  }
+  await dashboardPage.closeDialogIfVisible();
+
 
   await test.step('Verify vehicles', async () => {
     await dashboardPage.expectVehicleCount(user.ownedVehicles.length);
     await dashboardPage.expectAllVehiclesVisible(user.ownedVehicleNames);
   });
   await test.step('Logout', async () => {
-    await dashboardPage.logout();
+  //  await dashboardPage.logout();
   });
   await test.step('Close page', async () => {
     await page.close();

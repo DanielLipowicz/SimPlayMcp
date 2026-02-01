@@ -1,6 +1,7 @@
 import { Page, test } from '@playwright/test';
 import { BasePage } from './BasePage';
 import { LoginPage } from './LoginPage';
+import { config } from '../config';
 
 export class HomePage extends BasePage {
   constructor(page: Page) {
@@ -16,7 +17,7 @@ export class HomePage extends BasePage {
   }
 
   async goTo(): Promise<void> {
-    await this.page.goto('http://localhost:3000/');
+    await this.page.goto(`${config.baseUrl}/`);
     await this.header.ensureEnglish();
     await this.header.expectCompleteVisible();
   }
