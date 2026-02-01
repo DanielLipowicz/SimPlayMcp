@@ -1,0 +1,28 @@
+{
+  "name": "simplaymcp",
+  "version": "1.0.0",
+  "description": "Simple play with Plawright MCP",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/DanielLipowicz/SimPlayMcp.git"
+  },
+  "keywords": [
+    "mcp",
+    "playwright",
+    "testing"
+  ],
+  "author": "Daniel Lipowicz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DanielLipowicz/SimPlayMcp/issues"
+  },
+  "homepage": "https://github.com/DanielLipowicz/SimPlayMcp#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.57.0",
+    "@types/node": "^25.0.9"
+  }
+}
