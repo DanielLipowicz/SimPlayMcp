@@ -1,6 +1,10 @@
 # SimPlayMcp
 Simple play with Playwright MCP server
 
+## Environment setup
+- Copy `.env.example` to `.env`.
+- Set `STANDARD_USER_PASSWORD` to the secret password used by test data.
+
 ## Page Object Model rules
 - Every page object must extend `BasePage`, which guarantees `header` and `footer` components are present.
 - `Header` defines all required header elements (navigation + auth actions) and exposes `expectCompleteVisible()` to verify completeness.
