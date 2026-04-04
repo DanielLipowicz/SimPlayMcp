@@ -2,6 +2,7 @@ import { Page, test } from '@playwright/test';
 import { BasePage } from './BasePage';
 import { LoginPage } from './LoginPage';
 import { config } from '../config';
+import { RegisterPage } from './RegisterPage';
 
 export class HomePage extends BasePage {
   constructor(page: Page) {
@@ -22,7 +23,20 @@ export class HomePage extends BasePage {
     await this.header.expectCompleteVisible();
   }
 
-  async SingInButtonClick(): Promise<LoginPage> {
+  getPage(): Page {
+    return this.page;
+  }
+
+  async RegisterButtonClick(): Promise<RegisterPage> {
+    return test.step('Open register page', async () => {
+      await this.header.createAccountLink.click();
+      const registerPage = new RegisterPage(this.page);
+      await registerPage.expectVisible();
+      return registerPage;
+    });
+  }
+
+  async LoginButtonClick(): Promise<LoginPage> {
     return test.step('Open login page', async () => {
       await this.header.signInLink.click();
       const loginPage = new LoginPage(this.page);

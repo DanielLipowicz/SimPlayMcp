@@ -1,7 +1,7 @@
 import { test } from "@playwright/test";
-import { standardUser } from "./testData/StandardUser";
-import { DashboardPage } from "./pageObjects/DashboardPage";
-import { config } from "./config";
+import { standardUser } from "../testData/StandardUser";
+import { DashboardPage } from "../pageObjects/DashboardPage";
+import { config } from "../config";
 
 test.describe("Scenario 2: verify vehicles without login", () => {
   test.use({ storageState: config.StandardUserStorageState });

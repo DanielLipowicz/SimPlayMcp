@@ -52,4 +52,8 @@ export class LoginPage extends BasePage {
       return dashboardPage;
     });
   }
+
+  getPage(): Page {
+    return this.page;
+  }
 }

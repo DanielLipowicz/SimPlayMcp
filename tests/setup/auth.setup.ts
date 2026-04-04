@@ -5,7 +5,7 @@ import { config } from '../config';
 
 setup('authenticate standard user', async ({ page }) => {
   const homePage = await HomePage.create(page);
-  const loginPage = await homePage.SingInButtonClick();
+  const loginPage = await homePage.LoginButtonClick();
   await loginPage.login(standardUser.email, standardUser.password);
   await loginPage.storageState(config.StandardUserStorageState);
   console.log('Storage state saved to', config.StandardUserStorageState);
