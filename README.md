@@ -1,6 +1,10 @@
 # SimPlayMcp
 Simple play with Playwright MCP server
 
+## Application under test
+Application is a POC for single car or fleet management. POC stage make whole testing suite unstable and there are high risk of data model changes.
+Its goal is to provide fast feedback on critical user flows, validate frontend-backend integration on system level, and detect regressions in unstable POC conditions.
+
 ## Environment setup
 - Copy `.env.example` to `.env`.
 - Set `STANDARD_USER_PASSWORD` to the secret password used by test data.
@@ -20,3 +24,21 @@ Simple play with Playwright MCP server
 - This structure produces a cleaner report timeline like the example in `testRun.png`.
 
 ![Playwright report example](./testRun.png)
+
+## Test strategy
+Application is builded with proper test pyramid. most of the cases are in the application repostory.
+### Tests levels
+- Unit test to cover complex bussiness logic on class level
+- Integration test to cover contolers logic with spring context
+- Contract tests to verify contract between frontend and backend
+- E2E Playwright testing suite to verify system as ecosystem. This level should verfy:
+   - application on functional level by mimicking user interaction
+   - visual level of application by doing visual comparation between runs
+   - communication error handling by mimicking backend errors and capability to restore frontend application after failure 
+   - UI performance monitoring to identify significant decreese in performance on UI
+
+## Test data strategy 
+- Because of early stage of POC environemnt is cleand up regularly. 
+- Each test should prepere required dataset during the test or before test execution.
+- After test it's not mandatory to cleanup data which impact only one type of user
+   - in long term users data should be created dynamicly via db connection in before test stage
