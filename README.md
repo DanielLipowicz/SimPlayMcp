@@ -3,6 +3,7 @@ Simple play with Playwright MCP server
 
 ## Application under test
 Application is a POC for single car or fleet management. POC stage make whole testing suite unstable and there are high risk of data model changes.
+Its goal is to provide fast feedback on critical user flows, validate frontend-backend integration on system level, and detect regressions in unstable POC conditions.
 
 ## Environment setup
 - Copy `.env.example` to `.env`.
